@@ -3,13 +3,10 @@ import Book from './Book'
 
 class BookShelf extends Component{
 
-    liftValue(value, book) {
-        this.props.liftValue(value, book);
-    }
-
     render() {
 
         const { books } = this.props;
+        const { liftValue } = this.props;
 
         return (
             <div className="bookshelf">
@@ -17,7 +14,7 @@ class BookShelf extends Component{
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         {books.map((book) => (
-                            <Book book={book} key={book.id} liftValue={this.liftValue.bind(this)}/>
+                            <Book book={book} key={book.id} liftValue={(value)=>{liftValue(value, book)}}/>
                         ))}
                     </ol>
                 </div>

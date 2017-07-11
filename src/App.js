@@ -18,12 +18,13 @@ class BooksApp extends React.Component {
     });
   }
 
-  updateBook(value,book) {
+  updateBook(shelf,book) {
     //this.props.liftValue(value);
-    BooksAPI.update(book, value).then(() => {
-      BooksAPI.getAll().then((Books) => {
-        this.setState({Books});
-      });
+    BooksAPI.update(book,shelf).then(() => {
+      book.shelf = shelf;
+      this.setState(state => ({
+        Books: state.Books.filter(b => b.id !== book.id).concat([ book ])
+      }))
     })
   }
 
@@ -54,6 +55,7 @@ class BooksApp extends React.Component {
             <SearchBar liftValue={this.updateBook.bind(this)}
             filterBooks={this.filterBooks.bind(this)}
              books={this.state.FilteredBooks}
+             myListBooks={this.state.Books}
              resetBookList={this.resetBookList.bind(this)}
              />
           )}/>
