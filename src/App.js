@@ -3,7 +3,6 @@ import * as BooksAPI from './BooksAPI'
 import SearchBar from './SerachBar'
 import BooksLists from './BooksLists'
 import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -15,7 +14,6 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((Books) => {
-      console.log('get all',Books);
       this.setState({Books});
     });
   }
@@ -24,7 +22,6 @@ class BooksApp extends React.Component {
     //this.props.liftValue(value);
     BooksAPI.update(book, value).then(() => {
       BooksAPI.getAll().then((Books) => {
-        console.log('after update',Books);
         this.setState({Books});
       });
     })
@@ -37,7 +34,6 @@ class BooksApp extends React.Component {
         if(FilteredBooks.error) {
           this.resetBookList();
         } else {
-          console.log('filtered books',FilteredBooks);
           this.setState({FilteredBooks});
         }
       })

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 class BookShelfChanger extends Component{
 
@@ -24,10 +22,9 @@ class BookShelfChanger extends Component{
 
     render() {
 
-        const { book } = this.props;
         return (
             <div className="book-shelf-changer">
-                <select onChange = {this.handleUpdate.bind(this)} value={this.state.selected}>
+                <select onChange={this.handleUpdate.bind(this)} value={this.state.selected}>
                     <option disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
